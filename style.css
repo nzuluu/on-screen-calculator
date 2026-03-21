@@ -1,0 +1,35 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.div, #container {
+    display: flex;
+    max-width: 104px;
+    flex-wrap: wrap;
+}
+
+.display {
+    display: flex;
+    justify-content: right;
+    border: 1px solid black;
+    width: 102px;
+    height: 20px;
+}
+.num {
+    display: flex;
+    flex: 1;
+}
+.clear {
+    flex: 1;
+}
+
+.btnContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80px;
+}
+
+.oppContainer {
+    width: 20px;
+}
