@@ -1,5 +1,5 @@
 const add = function(a,b) {
-	return a + b;
+	return Math.floor(a) + Math.floor(b);
 };
 
 const subtract = function(a,b) {
@@ -53,30 +53,34 @@ const operate = function(a, operator, b) {
     }
 };
 
+createBtns();
 function createBtns() {
     const container = document.querySelector("#container");
-    const userInput = "1 + 5";
     const displayInput = document.createElement("div");
     displayInput.classList.add("display");
-    displayInput.innerHTML = userInput;
+    displayInput.id = ("display");
     container.appendChild(displayInput);
 
     const btnContainer = document.createElement("div");
+    
     btnContainer.classList.add("btnContainer");
 
     for (let i = 0; i <= 9; i++) {
         const btn = document.createElement("button");
         btn.classList.add("num");
+        btn.value = (`${9-i}`);
         btn.textContent = `${9-i}`;
         btnContainer.appendChild(btn);
     }
     const decimal = document.createElement("button");
     decimal.classList.add("decimal");
+    decimal.value = (".");
     decimal.textContent = ".";
     btnContainer.appendChild(decimal);
 
     const clearBtn = document.createElement("button");
     clearBtn.classList.add("clear");
+    clearBtn.value = ("clear");
     clearBtn.textContent = "Clear";
     btnContainer.appendChild(clearBtn);
 
@@ -85,23 +89,28 @@ function createBtns() {
 
     const divideBtn = document.createElement("button");
     divideBtn.classList.add("divide");
+    divideBtn.value = ("/");
     divideBtn.innerHTML = "&#247";
 
     const multipleBtn = document.createElement("button");
     multipleBtn.classList.add("multiple");
+    multipleBtn.value = ("*");
     multipleBtn.innerHTML = "&#215";
 
     const minusBtn = document.createElement("button");
     minusBtn.classList.add("minus");
+    minusBtn.value = ("-");
     minusBtn.innerHTML = "&#8722";
 
     const plusBtn = document.createElement("button");
     plusBtn.classList.add("plus");
+    plusBtn.value = ("+");
     plusBtn.innerHTML = "&#43";
 
     const equalBtn = document.createElement("button");
     equalBtn.classList.add("equal");
-    equalBtn.innerHTML = "&#61;";
+    equalBtn.value = ("=");
+    equalBtn.innerHTML = "&#61";
 
     operates.appendChild(divideBtn);
     operates.appendChild(multipleBtn);
@@ -112,6 +121,62 @@ function createBtns() {
 
     container.appendChild(btnContainer);
     container.appendChild(operates);
+
 }
 
-createBtns();
+let currentOperator = "";
+let firstValue = "";
+let secondValue = "";
+let result = "";
+
+document.querySelector("#container")
+  .addEventListener("click", event => {
+    let target = event.target;
+    if (target.matches("button")) {
+        let value = target.value;
+        if(currentOperator.match(/["---","+","*","/"]/)) {
+            switch(value) {
+                case "+":
+                    result = operate(firstValue, currentOperator, secondValue);
+                    currentOperator = "";
+                    return document.querySelector("#display").textContent = result;
+                case "-":
+                    result = operate(firstValue, currentOperator, secondValue);
+                    currentOperator = "";
+                    return document.querySelector("#display").textContent = result;
+                case "*":
+                    result = operate(firstValue, currentOperator, secondValue);
+                    currentOperator = "";
+                    return document.querySelector("#display").textContent = result;
+                case "/":
+                    result = operate(firstValue, currentOperator, secondValue);
+                    currentOperator = "";
+                    return document.querySelector("#display").textContent = result;
+                default:
+                    secondValue += value;
+                    return document.querySelector("#display").textContent = secondValue;
+                }
+        }
+        
+        else {
+        switch(value) {
+            case "+":
+                currentOperator = value;
+                return value = 0;
+            case "-":
+                currentOperator = value;
+                return value = 0;
+            case "*":
+                currentOperator = value;
+                return value = 0;
+            case "/":
+                currentOperator = value;
+                return value = 0;
+            default:
+                firstValue += value;
+                return document.querySelector("#display").textContent += value;
+            }
+        }
+    }
+  });
+
