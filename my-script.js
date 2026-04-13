@@ -137,21 +137,64 @@ document.querySelector("#container")
         if(currentOperator.match(/["---","+","*","/"]/)) {
             switch(value) {
                 case "+":
-                    result = operate(firstValue, currentOperator, secondValue);
-                    currentOperator = "";
+                    if (secondValue == '') {
+                        firstValue = result;
+                        currentOperator = value;
+                    }
+                    else {
+                        result = operate(firstValue, currentOperator, secondValue);
+                        firstValue = result;
+                        secondValue = "";
+                        currentOperator = value;
+                    }
                     return document.querySelector("#display").textContent = result;
                 case "-":
-                    result = operate(firstValue, currentOperator, secondValue);
-                    currentOperator = "";
+                    if (secondValue == '') {
+                        firstValue = result;
+                        currentOperator = value;
+                    }
+                    else {
+                        result = operate(firstValue, currentOperator, secondValue);
+                        firstValue = result;
+                        secondValue = "";
+                        currentOperator = value;
+                    }
                     return document.querySelector("#display").textContent = result;
                 case "*":
-                    result = operate(firstValue, currentOperator, secondValue);
-                    currentOperator = "";
+                    if (secondValue == '') {
+                        firstValue = result;
+                        currentOperator = value;
+                    }
+                    else {
+                        result = operate(firstValue, currentOperator, secondValue);
+                        firstValue = result;
+                        secondValue = "";
+                        currentOperator = value;
+                    }
                     return document.querySelector("#display").textContent = result;
                 case "/":
-                    result = operate(firstValue, currentOperator, secondValue);
-                    currentOperator = "";
+                    if (secondValue == '') {
+                        firstValue = result;
+                        currentOperator = value;
+                    }
+                    else {
+                        result = operate(firstValue, currentOperator, secondValue);
+                        firstValue = result;
+                        secondValue = "";
+                        currentOperator = value;
+                    }
                     return document.querySelector("#display").textContent = result;
+                case "=":
+                    result = operate(firstValue, currentOperator, secondValue);
+                    firstValue = result;
+                    secondValue = "";
+                    return document.querySelector("#display").textContent = result;
+                case "clear":
+                    result = "";
+                    currentOperator = "";
+                    firstValue = "";
+                    secondValue = "";
+                    return document.querySelector("#display").textContent = "";
                 default:
                     secondValue += value;
                     return document.querySelector("#display").textContent = secondValue;
@@ -172,6 +215,11 @@ document.querySelector("#container")
             case "/":
                 currentOperator = value;
                 return value = 0;
+            case "clear":
+                currentOperator = "";
+                firstValue = "";
+                secondValue = "";
+                return document.querySelector("#display").textContent = "";                
             default:
                 firstValue += value;
                 return document.querySelector("#display").textContent += value;
