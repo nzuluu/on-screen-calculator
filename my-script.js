@@ -138,7 +138,6 @@ document.querySelector("#container")
             switch(value) {
                 case "+":
                     if (secondValue == '') {
-                        result = firstValue;
                         currentOperator = value;
                     }
                     else {
@@ -192,6 +191,7 @@ document.querySelector("#container")
                         result = operate(firstValue, currentOperator, secondValue);
                         firstValue = "";
                         secondValue = "";
+                        currentOperator = "";
                     }
                     return document.querySelector("#display").textContent = result;
                 case "clear":
@@ -209,15 +209,27 @@ document.querySelector("#container")
         else {
         switch(value) {
             case "+":
+                if (firstValue == ''){
+                    firstValue = result;
+                }
                 currentOperator = value;
                 return value = 0;
             case "-":
+                if (firstValue == ''){
+                    firstValue = result;
+                }
                 currentOperator = value;
                 return value = 0;
             case "*":
+                if (firstValue == ''){
+                    firstValue = result;
+                }
                 currentOperator = value;
                 return value = 0;
             case "/":
+                if (firstValue == ''){
+                    firstValue = result;
+                }
                 currentOperator = value;
                 return value = 0;
             case "=":
@@ -229,7 +241,7 @@ document.querySelector("#container")
                 return document.querySelector("#display").textContent = "";                
             default:
                 firstValue += value;
-                return document.querySelector("#display").textContent += value;
+                return document.querySelector("#display").textContent = firstValue;
             }
         }
     }
