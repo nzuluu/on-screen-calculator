@@ -138,7 +138,7 @@ document.querySelector("#container")
             switch(value) {
                 case "+":
                     if (secondValue == '') {
-                        firstValue = result;
+                        result = firstValue;
                         currentOperator = value;
                     }
                     else {
@@ -150,7 +150,7 @@ document.querySelector("#container")
                     return document.querySelector("#display").textContent = result;
                 case "-":
                     if (secondValue == '') {
-                        firstValue = result;
+                        result = firstValue;
                         currentOperator = value;
                     }
                     else {
@@ -162,7 +162,7 @@ document.querySelector("#container")
                     return document.querySelector("#display").textContent = result;
                 case "*":
                     if (secondValue == '') {
-                        firstValue = result;
+                        result = firstValue;
                         currentOperator = value;
                     }
                     else {
@@ -174,7 +174,7 @@ document.querySelector("#container")
                     return document.querySelector("#display").textContent = result;
                 case "/":
                     if (secondValue == '') {
-                        firstValue = result;
+                        result = firstValue;
                         currentOperator = value;
                     }
                     else {
@@ -185,9 +185,14 @@ document.querySelector("#container")
                     }
                     return document.querySelector("#display").textContent = result;
                 case "=":
-                    result = operate(firstValue, currentOperator, secondValue);
-                    firstValue = result;
-                    secondValue = "";
+                    if ((secondValue == '') || (firstValue == '')) {
+                        return;
+                    }
+                    else {
+                        result = operate(firstValue, currentOperator, secondValue);
+                        firstValue = "";
+                        secondValue = "";
+                    }
                     return document.querySelector("#display").textContent = result;
                 case "clear":
                     result = "";
@@ -214,6 +219,8 @@ document.querySelector("#container")
                 return value = 0;
             case "/":
                 currentOperator = value;
+                return value = 0;
+            case "=":
                 return value = 0;
             case "clear":
                 currentOperator = "";
