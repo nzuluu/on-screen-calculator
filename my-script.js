@@ -1,5 +1,5 @@
 const add = function(a,b) {
-	return Math.floor(a) + Math.floor(b);
+	return Number(a) + Number(b);;
 };
 
 const subtract = function(a,b) {
