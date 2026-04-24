@@ -1,17 +1,26 @@
+const roundNum = function(input) {
+    var rounder = Math.pow(100, 4)
+    return (Math.round(input * rounder) / rounder);
+}
+
 const add = function(a,b) {
-	return Number(a) + Number(b);;
+    let sum = Number(a) + Number(b);
+	return roundNum(sum);
 };
 
 const subtract = function(a,b) {
-	return a - b;
+    let sum = a - b;
+	return roundNum(sum);
 };
 
 const multiply = function(a,b) {
-    return a * b;
+    let sum = a * b;
+    return roundNum(sum);
 };
 
 const divide = function(a,b)  {
-    return a/b;
+    let sum = a/b;
+    return roundNum(sum);
 };
 
 const sum = function(arr) {
@@ -118,7 +127,6 @@ function createBtns() {
     operates.appendChild(plusBtn);
     operates.appendChild(equalBtn);
 
-
     container.appendChild(btnContainer);
     container.appendChild(operates);
 
@@ -138,6 +146,7 @@ document.querySelector("#container")
             switch(value) {
                 case "+":
                     if (secondValue == '') {
+                        result = firstValue;
                         currentOperator = value;
                     }
                     else {
