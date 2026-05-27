@@ -216,7 +216,9 @@ document.querySelector("#container")
                     secondValue = "";
                     return document.querySelector("#display").textContent = "";
                 case "delete":
-                    return document.querySelector("#display").textContent = secondValue.length - 1;
+                    let removeNum = secondValue.slice(0, -1);
+                    secondValue = removeNum;
+                    return document.querySelector("#display").textContent = secondValue;
                 default:
                     secondValue += value;
                     return document.querySelector("#display").textContent = secondValue;
@@ -257,7 +259,8 @@ document.querySelector("#container")
                 secondValue = "";
                 return document.querySelector("#display").textContent = "";
             case "delete":
-                firstValue = firstValue.length - 1;
+                let removeNum = firstValue.slice(0, -1);
+                firstValue = removeNum;
                 return document.querySelector("#display").textContent = firstValue;          
             default:
                 firstValue += value;
