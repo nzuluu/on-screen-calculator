@@ -5,7 +5,7 @@ body {
 
 .div, #container {
     display: flex;
-    max-width: 104px;
+    max-width: 150px;
     flex-wrap: wrap;
 }
 
@@ -13,12 +13,13 @@ body {
     display: flex;
     justify-content: right;
     border: 1px solid black;
-    width: 102px;
+    width: 150px;
     height: 20px;
 }
 .num {
     display: flex;
     flex: 1;
+    padding: 10px;
 }
 .clear {
     flex: 1;
@@ -27,9 +28,14 @@ body {
 .btnContainer {
     display: flex;
     flex-wrap: wrap;
-    width: 80px;
+    width: 100px;
 }
 
 .oppContainer {
-    width: 20px;
+    width: 50px;
+}
+
+button, .num {
+    width: 50px;
+    justify-content: center;
 }

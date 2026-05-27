@@ -82,42 +82,48 @@ function createBtns() {
         btnContainer.appendChild(btn);
     }
     const decimal = document.createElement("button");
-    decimal.classList.add("decimal");
+    decimal.classList.add("num");
     decimal.value = (".");
     decimal.textContent = ".";
     btnContainer.appendChild(decimal);
 
     const clearBtn = document.createElement("button");
-    clearBtn.classList.add("clear");
+    clearBtn.classList.add("num");
     clearBtn.value = ("clear");
     clearBtn.textContent = "Clear";
     btnContainer.appendChild(clearBtn);
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("num");
+    deleteBtn.value = ("delete");
+    deleteBtn.textContent = "Del";
+    btnContainer.appendChild(deleteBtn);
 
     const operates = document.createElement("div");
     operates.classList.add("oppContainer");
 
     const divideBtn = document.createElement("button");
-    divideBtn.classList.add("divide");
+    divideBtn.classList.add("num");
     divideBtn.value = ("/");
     divideBtn.innerHTML = "&#247";
 
     const multipleBtn = document.createElement("button");
-    multipleBtn.classList.add("multiple");
+    multipleBtn.classList.add("num");
     multipleBtn.value = ("*");
     multipleBtn.innerHTML = "&#215";
 
     const minusBtn = document.createElement("button");
-    minusBtn.classList.add("minus");
+    minusBtn.classList.add("num");
     minusBtn.value = ("-");
     minusBtn.innerHTML = "&#8722";
 
     const plusBtn = document.createElement("button");
-    plusBtn.classList.add("plus");
+    plusBtn.classList.add("num");
     plusBtn.value = ("+");
     plusBtn.innerHTML = "&#43";
 
     const equalBtn = document.createElement("button");
-    equalBtn.classList.add("equal");
+    equalBtn.classList.add("num");
     equalBtn.value = ("=");
     equalBtn.innerHTML = "&#61";
 
@@ -209,6 +215,8 @@ document.querySelector("#container")
                     firstValue = "";
                     secondValue = "";
                     return document.querySelector("#display").textContent = "";
+                case "delete":
+                    return document.querySelector("#display").textContent = secondValue.length - 1;
                 default:
                     secondValue += value;
                     return document.querySelector("#display").textContent = secondValue;
@@ -247,7 +255,9 @@ document.querySelector("#container")
                 currentOperator = "";
                 firstValue = "";
                 secondValue = "";
-                return document.querySelector("#display").textContent = "";                
+                return document.querySelector("#display").textContent = "";
+            case "delete":
+                return document.querySelector("#display").textContent = firstValue.length - 1;          
             default:
                 firstValue += value;
                 return document.querySelector("#display").textContent = firstValue;
