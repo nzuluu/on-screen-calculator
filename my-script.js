@@ -257,7 +257,8 @@ document.querySelector("#container")
                 secondValue = "";
                 return document.querySelector("#display").textContent = "";
             case "delete":
-                return document.querySelector("#display").textContent = firstValue.length - 1;          
+                firstValue = firstValue.length - 1;
+                return document.querySelector("#display").textContent = firstValue;          
             default:
                 firstValue += value;
                 return document.querySelector("#display").textContent = firstValue;
