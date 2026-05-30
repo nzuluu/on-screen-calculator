@@ -144,8 +144,8 @@ let firstValue = "";
 let secondValue = "";
 let result = "";
 
-document.querySelector("#container")
-  .addEventListener("click", event => {
+//Define a reusable buttons for both events click and keydown
+function allButtons(event) {
     let target = event.target;
     const decimalBtn = document.getElementById("decimal");
 
@@ -277,5 +277,15 @@ document.querySelector("#container")
             }
         }
     }
-  });
+  };
+
+const buttons = document.querySelector("#container");
+
+//Event listener for when buttons are clicked
+buttons.addEventListener("click", allButtons);
+
+//Event listener for when buttons are keydown pressed
+buttons.addEventListener("keydown", function(e) {
+    allButtons(e);
+});
 
