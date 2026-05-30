@@ -67,7 +67,7 @@ function createBtns() {
     const container = document.querySelector("#container");
     const displayInput = document.createElement("div");
     displayInput.classList.add("display");
-    displayInput.id = ("display");
+    displayInput.id = "display";
     container.appendChild(displayInput);
 
     const btnContainer = document.createElement("div");
@@ -82,6 +82,7 @@ function createBtns() {
         btnContainer.appendChild(btn);
     }
     const decimal = document.createElement("button");
+    decimal.id = "decimal";
     decimal.classList.add("num");
     decimal.value = (".");
     decimal.textContent = ".";
@@ -146,8 +147,16 @@ let result = "";
 document.querySelector("#container")
   .addEventListener("click", event => {
     let target = event.target;
+    const decimalBtn = document.getElementById("decimal");
+
     if (target.matches("button")) {
         let value = target.value;
+
+        //disabling decimal after used
+        if (target.value == '.') {
+            decimalBtn.disabled = true;
+        }
+
         if(currentOperator.match(/["---","+","*","/"]/)) {
             switch(value) {
                 case "+":
