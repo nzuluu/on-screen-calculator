@@ -77,24 +77,27 @@ function createBtns() {
     for (let i = 0; i <= 9; i++) {
         const btn = document.createElement("button");
         btn.classList.add("num");
+        btn.id = `${9-i}`;
         btn.value = (`${9-i}`);
         btn.textContent = `${9-i}`;
         btnContainer.appendChild(btn);
     }
     const decimal = document.createElement("button");
-    decimal.id = "decimal";
+    decimal.id = ".";
     decimal.classList.add("num");
     decimal.value = (".");
     decimal.textContent = ".";
     btnContainer.appendChild(decimal);
 
     const clearBtn = document.createElement("button");
+    clearBtn.id = "Escape";
     clearBtn.classList.add("num");
     clearBtn.value = ("clear");
     clearBtn.textContent = "Clear";
     btnContainer.appendChild(clearBtn);
 
     const deleteBtn = document.createElement("button");
+    deleteBtn.id = "Backspace";
     deleteBtn.classList.add("num");
     deleteBtn.value = ("delete");
     deleteBtn.textContent = "Del";
@@ -104,26 +107,31 @@ function createBtns() {
     operates.classList.add("oppContainer");
 
     const divideBtn = document.createElement("button");
+    divideBtn.id = "/";
     divideBtn.classList.add("num");
     divideBtn.value = ("/");
     divideBtn.innerHTML = "&#247";
 
     const multipleBtn = document.createElement("button");
+    multipleBtn.id = "*";
     multipleBtn.classList.add("num");
     multipleBtn.value = ("*");
     multipleBtn.innerHTML = "&#215";
 
     const minusBtn = document.createElement("button");
+    minusBtn.id = "-";
     minusBtn.classList.add("num");
     minusBtn.value = ("-");
     minusBtn.innerHTML = "&#8722";
 
     const plusBtn = document.createElement("button");
+    plusBtn.id = "+";
     plusBtn.classList.add("num");
     plusBtn.value = ("+");
     plusBtn.innerHTML = "&#43";
 
     const equalBtn = document.createElement("button");
+    equalBtn.id = "Enter";
     equalBtn.classList.add("num");
     equalBtn.value = ("=");
     equalBtn.innerHTML = "&#61";
@@ -147,7 +155,7 @@ let result = "";
 //Define a reusable buttons for both events click and keydown
 function allButtons(event) {
     let target = event.target;
-    const decimalBtn = document.getElementById("decimal");
+    const decimalBtn = document.getElementById(".");
 
     if (target.matches("button")) {
         let value = target.value;
@@ -285,7 +293,12 @@ const buttons = document.querySelector("#container");
 buttons.addEventListener("click", allButtons);
 
 //Event listener for when buttons are keydown pressed
-buttons.addEventListener("keydown", function(e) {
-    allButtons(e);
+document.addEventListener("keydown", event => {
+    const key = event.key;
+    const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', '.', '=', 'Enter', 'Backspace', 'Escape'];
+    
+    if(allowedKeys.includes(key)) {
+        document.getElementById(`${key}`).click();
+    }
 });
 
