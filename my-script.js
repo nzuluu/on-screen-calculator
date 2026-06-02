@@ -151,6 +151,9 @@ let currentOperator = "";
 let firstValue = "";
 let secondValue = "";
 let result = "";
+let removeNum = "";
+let splitChar = "";
+let storeLastChar = "";
 
 //Define a reusable buttons for both events click and keydown
 function allButtons(event) {
@@ -160,11 +163,12 @@ function allButtons(event) {
     if (target.matches("button")) {
         let value = target.value;
 
-        //disabling decimal after used
-        if (target.value == '.') {
+        if (value == ".") {
             decimalBtn.disabled = true;
         }
-
+        if(value.match(/["---","+","*","/"]/)) {
+            decimalBtn.disabled = false;
+        }
         if(currentOperator.match(/["---","+","*","/"]/)) {
             switch(value) {
                 case "+":
@@ -231,9 +235,15 @@ function allButtons(event) {
                     currentOperator = "";
                     firstValue = "";
                     secondValue = "";
+                    decimalBtn.disabled = false;
                     return document.querySelector("#display").textContent = "";
                 case "delete":
-                    let removeNum = secondValue.slice(0, -1);
+                    splitChar = secondValue.split("");
+                    storeLastChar = splitChar.pop();
+                    if(storeLastChar == ".") {
+                    decimalBtn.disabled = false;
+                    }
+                    removeNum = secondValue.slice(0, -1);
                     secondValue = removeNum;
                     return document.querySelector("#display").textContent = secondValue;
                 default:
@@ -243,45 +253,53 @@ function allButtons(event) {
         }
         
         else {
-        switch(value) {
-            case "+":
-                if (firstValue == ''){
-                    firstValue = result;
-                }
-                currentOperator = value;
-                return value = 0;
-            case "-":
-                if (firstValue == ''){
-                    firstValue = result;
-                }
-                currentOperator = value;
-                return value = 0;
-            case "*":
-                if (firstValue == ''){
-                    firstValue = result;
-                }
-                currentOperator = value;
-                return value = 0;
-            case "/":
-                if (firstValue == ''){
-                    firstValue = result;
-                }
-                currentOperator = value;
-                return value = 0;
-            case "=":
-                return value = 0;
-            case "clear":
-                currentOperator = "";
-                firstValue = "";
-                secondValue = "";
-                return document.querySelector("#display").textContent = "";
-            case "delete":
-                let removeNum = firstValue.slice(0, -1);
-                firstValue = removeNum;
-                return document.querySelector("#display").textContent = firstValue;          
-            default:
-                firstValue += value;
-                return document.querySelector("#display").textContent = firstValue;
+
+            switch(value) {
+                case "+":
+                    if (firstValue == ''){
+                        firstValue = result;
+                    }
+                    currentOperator = value;
+                    return value = 0;
+                case "-":
+                    if (firstValue == ''){
+                        firstValue = result;
+                    }
+                    currentOperator = value;
+                    return value = 0;
+                case "*":
+                    if (firstValue == ''){
+                        firstValue = result;
+                    }
+                    currentOperator = value;
+                    return value = 0;
+                case "/":
+                    if (firstValue == ''){
+                        firstValue = result;
+                    }
+                    currentOperator = value;
+                    return value = 0;
+                case "=":
+                    return value = 0;
+                case "clear":
+                    currentOperator = "";
+                    firstValue = "";
+                    secondValue = "";
+                    decimalBtn.disabled = false;
+                    return document.querySelector("#display").textContent = "";
+                case "delete":
+                    splitChar = firstValue.split("");
+                    storeLastChar = splitChar.pop();
+                    if(storeLastChar == ".") {
+                    decimalBtn.disabled = false;
+                    }
+                    removeNum = firstValue.slice(0, -1);
+                    firstValue = removeNum;
+                    return document.querySelector("#display").textContent = firstValue;          
+                default:
+                    firstValue += value;
+                    //disabling decimal after used
+                    return document.querySelector("#display").textContent = firstValue;
             }
         }
     }
