@@ -2,13 +2,11 @@ body {
     display: flex;
     justify-content: center;
 }
-
 .div, #container {
     display: flex;
     max-width: 150px;
     flex-wrap: wrap;
 }
-
 .display {
     display: flex;
     justify-content: right;

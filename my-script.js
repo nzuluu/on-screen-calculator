@@ -166,7 +166,7 @@ function allButtons(event) {
         if (value == ".") {
             decimalBtn.disabled = true;
         }
-        if(value.match(/["---","+","*","/"]/)) {
+        if(value.match(/["---","+","*","/","="]/)) {
             decimalBtn.disabled = false;
         }
         if(currentOperator.match(/["---","+","*","/"]/)) {
